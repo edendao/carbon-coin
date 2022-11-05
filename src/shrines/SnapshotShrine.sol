@@ -101,8 +101,7 @@ contract SnapshotShrine is Stewarded, ReentrancyGuard {
     /// User actions
     /// -----------------------------------------------------------------------
 
-    // TODO: Update below notice to reflect structure
-    /// @notice Offer ERC-20 tokens to the MerkleShrine and distribute them to Champions proportional
+    /// @notice Offer ERC-20 tokens to the SnapshotShrine and distribute them to Champions proportional
     /// to their shares in the Shrine. Callable by anyone.
     /// @param token The ERC-20 token being offered to the Shrine
     /// @param amount The amount of tokens to offer
@@ -115,11 +114,8 @@ contract SnapshotShrine is Stewarded, ReentrancyGuard {
         emit Offer(msg.sender, token, amount);
     }
 
-    // TODO: Update below notice to reflect structure
     /// @notice A Champion or the owner of a Champion may call this to
     ///         claim their share of the tokens offered to this Shrine.
-    /// Requires a Merkle proof to prove that the Champion is part of this Shrine's Merkle tree.
-    // TODO: what kind of proof does it need now?
     /// Only callable by the champion (if the right was never transferred) or the owner
     /// (that the original champion transferred their rights to)
     /// @param claimInfo The info of the claim
@@ -162,7 +158,7 @@ contract SnapshotShrine is Stewarded, ReentrancyGuard {
     /// @notice A variant of {claim} that combines multiple claims for the
     ///         same Champion & snapshotId into a single call.
     /// @dev This is more efficient than {claimMultiple} since
-    ///      it only checks Champion ownership & verifies Merkle proof once.
+    ///      it only checks Champion ownership once.
     function claimMultipleTokensForChampion(
         address recipient,
         uint256 snapshot,
@@ -206,8 +202,7 @@ contract SnapshotShrine is Stewarded, ReentrancyGuard {
         }
     }
 
-    // TODO: Update below notice to reflect structure
-    /// @notice If this MerkleShrine is a Champion of another MerkleShrine (MetaShrine),
+    /// @notice If this SnapshotShrine is a Champion of another SnapshotShrine (MetaShrine),
     ///         calling this can claim the tokens
     /// from the MetaShrine and distribute them to this Shrine's Champions. Callable by anyone.
     /// @param claimInfo The info of the claim
